@@ -1,7 +1,9 @@
 package com.example.schedule.controller;
 
 import com.example.schedule.dto.CreateScheduleRequest;
+import com.example.schedule.dto.DeleteScheduleRequest;
 import com.example.schedule.dto.ScheduleResponse;
+import com.example.schedule.dto.UpdateScheduleRequest;
 import com.example.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +32,15 @@ public class ScheduleController {
     @PutMapping("/{id}")
     public ScheduleResponse update(
             @PathVariable Long id,
-            @RequestBody CreateScheduleRequest request
-    ){
+            @RequestBody UpdateScheduleRequest request
+            ){
         return scheduleService.update(id, request);
+    }
+    @DeleteMapping("/{id}")
+    public void delete(
+            @PathVariable Long id,
+            @RequestBody DeleteScheduleRequest request
+    ){
+        scheduleService.delete(id, request);
     }
 }
